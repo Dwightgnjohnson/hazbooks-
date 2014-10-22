@@ -1,4 +1,14 @@
 Rails.application.routes.draw do
+  root 'checkout#list'
+
+  #get 'checkout/new_checkout'
+   get "checkout" => "checkout#new_checkout"
+  post "checkout" => "checkout#new_checkout"
+
+  #get 'checkout/new_checkin'
+   get "checkin" => "checkout#new_checkin"
+  post "checkin" => "checkout#new_checkin"
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
