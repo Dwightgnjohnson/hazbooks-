@@ -1,6 +1,9 @@
 <h1>Library#list</h1>
+<btn><%= link_to "Checkin Book", checkin_path %></btn>
+<br><hr>
 
 <% @books.each do |book| %>
+
   <li>
     <strong><%= book.title %></strong> by
     <em><%= book.author %></em>
@@ -10,3 +13,16 @@
     <% end %>
   </li>
 <% end %>
+<br><hr><hr>
+<h2>Patrons <em>Book Checkout History</em></h2>
+<% @patrons.each do |patron| %>
+
+  <p><%= patron.name%>
+  <% patron.checkouts.select {|checkout| checkout.checked_out?}.each do |checkout| %>
+    <em>&#10003; <%= checkout.book.title %> <%= checkout.checkout_at.strftime('%e %b %Y %H:%M %p') %></em></p>
+  <%end%>
+
+  <% patron.books.each do |book| %>
+    <em><%= book.title %></em>
+  <%end%>
+<%end%>

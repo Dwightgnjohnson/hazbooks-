@@ -1,1 +1,13 @@
 <h1>Library#new_checkin</h1>
+<h2>Checked-Out:</h2>
+<% @checkouts.each do |x| %>
+  <p>
+    <%= link_to "Check in", checkin_path(checkout_id: x.id), method: :post, data: {confirm: "R U SURE?"} %>
+
+    <%= x.book.title %> &#10003;: <%= x.patron.name %> <%= distance_of_time_in_words x.checkout_at, Time.now %> ago.
+
+
+
+  </p>
+  <hr>
+<%end%>

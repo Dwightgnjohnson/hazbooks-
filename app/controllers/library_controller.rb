@@ -27,5 +27,17 @@ class LibraryController < ApplicationController
   end
 
   def new_checkin
+    @checkouts = Checkout.where("checkin_at IS NULL")
+  end
+
+  def checkin
+    @checkout = Checkout.find(params[:checkout_id])
+
+    if @checkout.update(checkin_at: DateTime.now)
+      @checkout.book.update(available: true)
+      redirect_to root_path, notice: "Back to Library!"
+    else
+      render :new_checkin
+    end
   end
 end
