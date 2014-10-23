@@ -1,0 +1,12 @@
+<h1>Library#list</h1>
+
+<% @books.each do |book| %>
+  <li>
+    <strong><%= book.title %></strong> by
+    <em><%= book.author %></em>
+    <%= book.year %>.
+    <% if book.available? %>
+      <%= link_to "Checkout", checkout_path(book_id: book.id) %>
+    <% end %>
+  </li>
+<% end %>
